@@ -1,0 +1,27 @@
+<h1 class="page-title" style="margin-bottom: 6px;" data-i18n="alerts.title">Alert Center</h1>
+<p class="page-subtitle">
+    <span data-i18n="alerts.subtitle">Open alerts that still need action.</span>
+    <span class="count-pill" id="alerts-open-count">0</span>
+</p>
+
+<!-- One tab per incident type (rendered by js/alerts.js) -->
+<div class="filter-tabs" id="alert-filters"></div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th data-i18n="col.dateTime">Date / Time</th>
+                <th data-i18n="col.id">ID</th>
+                <th data-i18n="col.type">Type</th>
+                <th data-i18n="col.locCam">Location / Camera</th>
+                <th data-i18n="col.details">Details</th>
+                <th data-i18n="col.status">Status</th>
+                <th data-i18n="col.action">Action</th>
+            </tr>
+        </thead>
+        <tbody id="alerts-table">
+            <!-- Injected -->
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,122 @@
+<!-- LIST VIEW -->
+<div id="incidents-list-view">
+    <div class="flex-between toolbar-row mb-20">
+        <h1 class="page-title" style="margin:0;" data-i18n="inc.title">Incident Database</h1>
+        <div class="toolbar">
+            <!-- Options rendered by js/incidents.js -->
+            <select class="search-bar select-md" id="incident-status-filter"></select>
+            <input type="text" class="search-bar" id="incident-search" data-i18n-placeholder="inc.search">
+            <button class="btn btn-secondary" id="incident-export">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                <span data-i18n="inc.export">Export CSV</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th data-i18n="col.id">ID</th>
+                    <th data-i18n="col.dateTime">Date / Time</th>
+                    <th data-i18n="col.type">Type</th>
+                    <th data-i18n="col.location">Location</th>
+                    <th data-i18n="col.camera">Camera</th>
+                    <th data-i18n="col.plate">Plate</th>
+                    <th data-i18n="col.conf">Confidence</th>
+                    <th data-i18n="col.status">Status</th>
+                    <th data-i18n="col.action">Action</th>
+                </tr>
+            </thead>
+            <tbody id="incidents-table">
+                <!-- Injected -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- DETAIL VIEW -->
+<div id="incidents-detail-view" style="display: none;">
+    <div class="mb-20">
+        <button class="btn btn-secondary" onclick="closeIncidentDetail()" data-i18n="inc.back">← Back to List</button>
+    </div>
+
+    <div class="card mb-20">
+        <div class="flex-between toolbar-row">
+            <h2 style="font-size: 1.5rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span data-i18n="inc.incident">Incident</span> <span id="det-id" style="color: var(--primary-color);"></span>
+                <span id="det-status-badge"></span>
+            </h2>
+            <div id="det-time" style="color: var(--text-secondary);"></div>
+        </div>
+    </div>
+
+    <div class="incident-detail-container">
+        <div class="detail-main">
+            <div class="card mb-20">
+                <h3 data-i18n="inc.evidence">Evidence</h3>
+                <div class="mt-20">
+                    <div class="evidence-image">
+                        <div
+                            style="position: absolute; top: 10px; left: 10px; font-family: monospace; color: var(--success-color);">
+                            REC: <span id="det-cam-id"></span></div>
+                        <div style="color: #e2e8f0; display: flex;" id="det-icon"></div>
+                        <div
+                            style="position: absolute; border: 2px solid var(--danger-color); background-color: rgba(239, 68, 68, 0.2); width: 150px; height: 150px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px;">
+                            <span
+                                style="background-color: var(--danger-color); color: white; padding: 2px 6px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; white-space: nowrap;"
+                                id="det-overlay-text"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-bar" id="det-actions">
+                    <!-- Injected buttons -->
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="mb-20" data-i18n="inc.notes">Notes</h3>
+                <div id="det-notes-list"><!-- Injected --></div>
+                <div class="note-form">
+                    <textarea class="form-input" id="det-note-input" rows="2" data-i18n-placeholder="inc.notePlaceholder"></textarea>
+                    <button class="btn btn-secondary" id="det-note-add" data-i18n="inc.addNote">Add Note</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-sidebar">
+            <div class="card mb-20">
+                <h3 class="mb-20" data-i18n="inc.details">Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="col.type">Type</span>
+                    <span class="detail-value" id="det-type"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="col.location">Location</span>
+                    <span class="detail-value" id="det-location"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="col.plate">Plate</span>
+                    <span class="detail-value" id="det-plate"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label" data-i18n="col.conf">Confidence</span>
+                    <span class="detail-value" id="det-conf"></span>
+                </div>
+                <div class="detail-row" id="det-speed-row" style="display:none;">
+                    <span class="detail-label" data-i18n="inc.speedLimit">Speed / Limit</span>
+                    <span class="detail-value"><span id="det-speed"
+                            style="color:var(--danger-color);"></span> / <span id="det-limit"></span></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 data-i18n="inc.timeline">Status Timeline</h3>
+                <div class="timeline" id="det-timeline">
+                    <!-- Injected -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

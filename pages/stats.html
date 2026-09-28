@@ -1,0 +1,43 @@
+<div class="flex-between toolbar-row mb-20">
+    <h1 class="page-title" style="margin:0;" data-i18n="stats.title">Traffic Statistics</h1>
+    <div class="toolbar">
+        <select class="search-bar select-md" id="stats-date-filter">
+            <option value="All" data-i18n="stats.allTime">All Time</option>
+            <option value="Today" data-i18n="stats.today">Today</option>
+            <option value="Last7" data-i18n="stats.last7">Last 7 Days</option>
+        </select>
+        <!-- Type options rendered by js/stats.js -->
+        <select class="search-bar select-md" id="stats-type-filter"></select>
+        <select class="search-bar select-md" id="stats-time-filter">
+            <option value="All" data-i18n="stats.allDay">All Day</option>
+            <option value="Morning" data-i18n="stats.morning">Morning (06–12)</option>
+            <option value="Afternoon" data-i18n="stats.afternoon">Afternoon (12–18)</option>
+            <option value="Evening" data-i18n="stats.evening">Evening (18–06)</option>
+        </select>
+    </div>
+</div>
+
+<div class="grid-cards" id="stats-kpis"></div>
+
+<div class="grid-cards chart-grid">
+    <div class="card">
+        <h3 class="mb-20" style="font-size:1.1rem; font-weight:700;" data-i18n="stats.byType">Violations by Type</h3>
+        <div class="chart-container">
+            <canvas id="chart-type"></canvas>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="mb-20" style="font-size:1.1rem; font-weight:700;" data-i18n="stats.byLoc">Events by Location</h3>
+        <div class="chart-container">
+            <canvas id="chart-loc"></canvas>
+        </div>
+    </div>
+
+    <div class="card" style="grid-column: 1 / -1;">
+        <h3 class="mb-20" style="font-size:1.1rem; font-weight:700;" data-i18n="stats.byHour">Event Timeline (by Hour)</h3>
+        <div class="chart-container">
+            <canvas id="chart-time"></canvas>
+        </div>
+    </div>
+</div>

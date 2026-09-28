@@ -1,0 +1,78 @@
+<div class="flex-between toolbar-row mb-20">
+    <h1 class="page-title" style="margin:0;" data-i18n="cam.title">Live Camera Monitor</h1>
+    <span class="status-badge status-action-taken" id="camera-live-badge"></span>
+</div>
+
+<!-- Buttons, status and meta lines are rendered by js/camera.js -->
+<div class="camera-grid">
+    <!-- C01 -->
+    <div class="camera-panel" id="cam-C01">
+        <div class="camera-header">
+            <span><strong style="color:var(--primary-color)">C01</strong> • <span data-i18n="loc.Gate 1">Gate 1</span></span>
+            <span class="status-indicator"></span>
+        </div>
+        <div class="camera-meta"></div>
+        <div class="camera-view">
+            <div class="cam-overlay">SYS_OK</div>
+            <div class="car-anim" style="left: -100px; top: 100px;">🚗</div>
+            <div class="detection-box"
+                style="width: 120px; height: 120px; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+                <span class="detection-text"></span>
+            </div>
+        </div>
+        <div class="camera-controls"></div>
+    </div>
+
+    <!-- C02 -->
+    <div class="camera-panel" id="cam-C02">
+        <div class="camera-header">
+            <span><strong style="color:var(--primary-color)">C02</strong> • <span data-i18n="loc.Gate 2">Gate 2</span></span>
+            <span class="status-indicator"></span>
+        </div>
+        <div class="camera-meta"></div>
+        <div class="camera-view">
+            <div class="cam-overlay">SYS_OK</div>
+            <div class="car-anim" style="right: -100px; top: 150px; transform: scaleX(-1);">🚙</div>
+            <div class="detection-box" style="width: 100px; height: 100px; left: 40%; top: 40%;">
+                <span class="detection-text"></span>
+            </div>
+        </div>
+        <div class="camera-controls"></div>
+    </div>
+
+    <!-- C03 -->
+    <div class="camera-panel" id="cam-C03">
+        <div class="camera-header">
+            <span><strong style="color:var(--primary-color)">C03</strong> • <span data-i18n="loc.Crosswalk A">Crosswalk A</span></span>
+            <span class="status-indicator"></span>
+        </div>
+        <div class="camera-meta"></div>
+        <div class="camera-view">
+            <div class="cam-overlay">SYS_OK</div>
+            <div class="car-anim"
+                style="font-size: 3rem; left: 100px; top: -50px; transform: rotate(90deg);">🚶</div>
+            <div class="detection-box" style="width: 80px; height: 150px; left: 50%; top: 30%;">
+                <span class="detection-text"></span>
+            </div>
+        </div>
+        <div class="camera-controls"></div>
+    </div>
+
+    <!-- C04 -->
+    <div class="camera-panel" id="cam-C04">
+        <div class="camera-header">
+            <span><strong style="color:var(--primary-color)">C04</strong> • <span data-i18n="loc.Building A">Building A</span></span>
+            <span class="status-indicator"></span>
+        </div>
+        <div class="camera-meta"></div>
+        <div class="camera-view">
+            <div class="cam-overlay">SYS_OK</div>
+            <div class="car-anim"
+                style="font-size: 3.5rem; left: 50%; top: 50%; transform: translate(-50%, -50%);">🚐</div>
+            <div class="detection-box" style="width: 150px; height: 100px; left: 40%; top: 40%;">
+                <span class="detection-text"></span>
+            </div>
+        </div>
+        <div class="camera-controls"></div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<h1 class="page-title" data-i18n="map.title">Campus Risk Map</h1>
+<div class="card">
+    <div class="flex-between toolbar-row mb-20">
+        <p style="color: var(--text-secondary); font-size: 0.95rem;" data-i18n="map.desc"></p>
+        <div class="map-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--success-color);box-shadow:0 0 6px rgba(16,185,129,0.4);"></span><span data-i18n="map.low">Low (&lt;5)</span></span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--warning-color);box-shadow:0 0 6px rgba(245,158,11,0.4);"></span><span data-i18n="map.med">Medium (5–10)</span></span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--danger-color);box-shadow:0 0 6px rgba(239,68,68,0.4);"></span><span data-i18n="map.high">High (&gt;10)</span></span>
+        </div>
+    </div>
+
+    <div class="map-container" id="map-container">
+        <div class="map-tooltip" id="map-tooltip">
+            <h4 id="tt-title" style="font-weight:700; color:var(--text-main);"></h4>
+            <p style="color:var(--text-secondary); font-size:0.85rem; margin-top:6px;"><span data-i18n="map.events">Events</span>: <strong
+                    id="tt-events" style="color:var(--text-main);">0</strong></p>
+            <p style="color:var(--text-secondary); font-size:0.85rem;"><span data-i18n="map.risk">Risk</span>: <strong id="tt-risk"
+                    style="color:var(--text-main);"></strong></p>
+            <button class="btn btn-sm btn-primary" id="tt-view-btn"
+                style="width:100%; margin-top:10px;" data-i18n="map.viewIncidents">View Incidents</button>
+        </div>
+
+        <svg class="map-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <!-- Campus Background -->
+            <rect width="800" height="500" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2" rx="12" />
+
+            <!-- Grass / Park areas -->
+            <rect x="235" y="40" width="130" height="180" fill="#ecfdf5" rx="8" />
+            <rect x="435" y="40" width="85" height="180" fill="#ecfdf5" rx="8" />
+            <rect x="40" y="295" width="130" height="165" fill="#ecfdf5" rx="8" />
+            <rect x="635" y="295" width="130" height="165" fill="#ecfdf5" rx="8" />
+
+            <!-- Roads -->
+            <path d="M 0 250 L 800 250" stroke="#cbd5e1" stroke-width="44" fill="none" />
+            <path d="M 400 0 L 400 500" stroke="#cbd5e1" stroke-width="44" fill="none" />
+            <path d="M 200 250 L 200 450 L 600 450 L 600 250" stroke="#cbd5e1" stroke-width="32"
+                fill="none" />
+
+            <!-- Road Markings -->
+            <path d="M 0 250 L 800 250" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="10 10"
+                opacity="0.95" fill="none" />
+            <path d="M 400 0 L 400 500" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="10 10"
+                opacity="0.95" fill="none" />
+
+            <!-- Crosswalk A -->
+            <g transform="translate(378, 228)">
+                <rect x="0" y="0" width="44" height="44" fill="#ffffff" opacity="0.95" rx="3" />
+                <line x1="6" y1="0" x2="6" y2="44" stroke="#94a3b8" stroke-width="2" />
+                <line x1="14" y1="0" x2="14" y2="44" stroke="#94a3b8" stroke-width="2" />
+                <line x1="22" y1="0" x2="22" y2="44" stroke="#94a3b8" stroke-width="2" />
+                <line x1="30" y1="0" x2="30" y2="44" stroke="#94a3b8" stroke-width="2" />
+                <line x1="38" y1="0" x2="38" y2="44" stroke="#94a3b8" stroke-width="2" />
+            </g>
+
+            <!-- Buildings -->
+            <rect x="100" y="80" width="150" height="100" fill="#ffffff" rx="10" stroke="#3b82f6"
+                stroke-width="2.5" />
+            <text x="175" y="135" fill="#0f172a" font-size="14" font-weight="700"
+                text-anchor="middle" data-i18n="loc.Building A">Building A</text>
+
+            <rect x="550" y="80" width="150" height="100" fill="#ffffff" rx="10" stroke="#2563eb"
+                stroke-width="2.5" />
+            <text x="625" y="135" fill="#0f172a" font-size="14" font-weight="700"
+                text-anchor="middle" data-i18n="loc.Building B">Building B</text>
+
+            <!-- Gates -->
+            <rect x="0" y="218" width="22" height="64" fill="#64748b" rx="3" />
+            <text x="32" y="215" fill="#1e293b" font-size="12" font-weight="700" data-i18n="loc.Gate 1">Gate 1</text>
+
+            <rect x="778" y="218" width="22" height="64" fill="#64748b" rx="3" />
+            <text x="768" y="215" fill="#1e293b" font-size="12" font-weight="700" text-anchor="end" data-i18n="loc.Gate 2">Gate 2</text>
+
+            <!-- Map Markers (Dynamic) -->
+            <!-- Gate 1 (C01) -->
+            <circle cx="50" cy="250" r="16" id="marker-gate1" class="map-marker" data-loc="Gate 1"
+                opacity="0.9" />
+            <text x="50" y="255" fill="white" font-size="14" text-anchor="middle" font-weight="bold"
+                pointer-events="none">!</text>
+
+            <!-- Gate 2 (C02) -->
+            <circle cx="750" cy="250" r="16" id="marker-gate2" class="map-marker" data-loc="Gate 2"
+                opacity="0.9" />
+            <text x="750" y="255" fill="white" font-size="14" text-anchor="middle" font-weight="bold"
+                pointer-events="none">!</text>
+
+            <!-- Crosswalk A (C03) -->
+            <circle cx="400" cy="250" r="16" id="marker-crosswalk" class="map-marker" data-loc="Crosswalk A"
+                opacity="0.9" />
+            <text x="400" y="255" fill="white" font-size="14" text-anchor="middle" font-weight="bold"
+                pointer-events="none">!</text>
+
+            <!-- Building A (C04) -->
+            <circle cx="175" cy="190" r="16" id="marker-buildA" class="map-marker" data-loc="Building A"
+                opacity="0.9" />
+            <text x="175" y="195" fill="white" font-size="14" text-anchor="middle" font-weight="bold"
+                pointer-events="none">!</text>
+        </svg>
+    </div>
+</div>
